@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel;
 using ExamTwoCodeQuestions.Data;
 using Xunit;
 
@@ -71,6 +72,29 @@ namespace ExamTwoCodeQuestions.DataTests
         {
             var cobbler = new Cobbler();
             Assert.IsAssignableFrom<IOrderItem>(cobbler);
+        }
+
+        [Fact]
+        public void ShouldImplementINotifyPropertyChangedInterface()
+        {
+            var cobbler = new Cobbler();
+            Assert.IsAssignableFrom<INotifyPropertyChanged>(cobbler);
+        }
+
+        [Fact]
+        public void ChangingWithIceCreamShouldInvokePropertyChanged()
+        {
+            var cobbler = new Cobbler();
+
+            Assert.PropertyChanged(cobbler, "WithIceCream", () =>
+            {
+                cobbler.WithIceCream = false;
+            });
+
+            Assert.PropertyChanged(cobbler, "SpecialInstructions", () =>
+            {
+                cobbler.WithIceCream = false;
+            });
         }
     }
 }

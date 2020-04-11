@@ -7,6 +7,36 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBlock>Customize Cobbler</TextBlock>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>            
+        </Grid.RowDefinitions>
+
+        <Label Content="Cobble"
+               FontSize="36"/>
+
+        <ListBox x:Name="FruitFillingListbox"
+                 Grid.Row="1">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <ComboBox
+                        ItemsSource="{Binding Path=Fruit}"
+                        SelectedItem="{Binding Path=., Mode=TwoWay}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+
+
+        <CheckBox x:Name="WithIceCreamCheckbox"
+                  Grid.Row="2"
+                  Content="INCLUDE With Ice Cream"
+                  IsChecked="{Binding Path=WithIceCream}">
+            <CheckBox.LayoutTransform>
+                <ScaleTransform ScaleX="2" ScaleY="2"/>
+            </CheckBox.LayoutTransform>
+        </CheckBox>
+
     </Grid>
 </UserControl>
